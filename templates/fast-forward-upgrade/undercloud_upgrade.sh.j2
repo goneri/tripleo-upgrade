@@ -8,6 +8,9 @@ TRIPLEO_REPOS_RPM=$(curl -L --silent https://trunk.rdoproject.org/centos7/curren
 sudo yum localinstall -y https://trunk.rdoproject.org/centos7/current/${TRIPLEO_REPOS_RPM}
 
 sudo tripleo-repos {{ cmd_args }} ceph
+{% elif ffu_undercloud_repo_type == 'dci-repos'  %}
+sudo curl -o /etc/yum.repo.d/dci_repo_RH7-RHOS-{{ current_release }}.0.repo http://dci-jumpbox/dci_repo_RH7-RHOS-{{ current_release }}.0.repo
+
 {% endif %}
 
 {% if current_release == 'ocata' or current_release == '11' %}
